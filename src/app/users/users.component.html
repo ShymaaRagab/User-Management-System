@@ -1,1 +1,23 @@
-<p>users works!</p>
+<h2 class="my-5 text-center">All Users</h2>
+<button type="button" class="btn btn-primary me-3" (click)="sortbyName()">Sort BY Name</button>
+<button type="button" class="btn btn-primary">Sort By Age</button>
+
+<div class="container">
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">firstName</th>
+        <th scope="col">lastName</th>
+        <th scope="col">age</th>
+        <th scope="col">gender</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let user of userData; let i = index">
+      <tr>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.age}}</td>
+        <td>{{user.gender}}</td>
+    </tbody>
+  </table>
+</div>
