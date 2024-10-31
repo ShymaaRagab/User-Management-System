@@ -1,23 +1,29 @@
 <h2 class="my-5 text-center">All Users</h2>
-<button type="button" class="btn btn-primary me-3" (click)="sortbyName()">Sort BY Name</button>
-<button type="button" class="btn btn-primary">Sort By Age</button>
+<button type="button" class="btn btn-primary me-3" (click)="sortbyName()">Sort BY First Name</button>
+<button type="button" class="btn btn-primary" (click)="sortByAge()">Sort By Age</button>
 
 <div class="container">
   <table class="table">
     <thead class="thead-light">
       <tr>
-        <th scope="col">firstName</th>
-        <th scope="col">lastName</th>
-        <th scope="col">age</th>
-        <th scope="col">gender</th>
+        <th scope="col">Image</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Age</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Department Name</th>
+        <th scope="col">Job Title</th>
       </tr>
     </thead>
-    <tbody *ngFor="let user of userData; let i = index">
+    <tbody *ngFor="let user of userData">
       <tr>
+        <td><img [src]="user.image" alt="img" width="30%"></td>
         <td>{{user.firstName}}</td>
         <td>{{user.lastName}}</td>
         <td>{{user.age}}</td>
         <td>{{user.gender}}</td>
+        <td>{{user.company.department}}</td>
+        <td>{{user.company.title}}</td>
     </tbody>
   </table>
 </div>
