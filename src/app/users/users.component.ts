@@ -21,10 +21,12 @@ export class UsersComponent implements OnInit{
 
   sortbyName() {
     //this.userData.sort((a, b) => a.firstName.localeCompare(b.firstName));
+
+
     //another solution
     this.userData.sort(
       (a, b) => {
-        if(a.firstName>b.firstName) return 1;
+        if(a.firstName > b.firstName) return 1;
         else if (a.firstName < b.firstName) return -1;
         else return 0
       }
@@ -38,7 +40,7 @@ export class UsersComponent implements OnInit{
     this.userData.sort(
       (a,b)=>{
         if (a.age > b.age) return 1;
-        if ( a.age < b.age ) return -1;
+        if (a.age < b.age) return -1;
         return 0;
       }
     );
