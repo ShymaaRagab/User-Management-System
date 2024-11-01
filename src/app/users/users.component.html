@@ -1,6 +1,9 @@
 <h2 class="my-5 text-center">All Users</h2>
-<button type="button" class="btn btn-primary me-3" (click)="sortbyName()">Sort BY First Name</button>
-<button type="button" class="btn btn-primary" (click)="sortByAge()">Sort By Age</button>
+
+<button type="button" class="btn btn-primary me-3" (click)="sortbyNameAsc()" *ngIf="isSort">Sort BY First Name
+  Asc</button>
+<button type="button" class="btn btn-primary" (click)="sortbyNameDesc()" *ngIf="!isSort">Sort By First Name
+  Desc</button>
 
 <div class="container">
   <table class="table">
@@ -24,6 +27,15 @@
         <td>{{user.gender}}</td>
         <td>{{user.company.department}}</td>
         <td>{{user.company.title}}</td>
+      </tr>
     </tbody>
   </table>
+  <nav class="d-flex justify-content-center">
+    <ul class="pagination pagination-sm">
+      <li class="page-item" *ngFor="let p of paginationArray;let index = index;" (click)="getLimitUser(index)"
+        [ngClass]="{'active': index === current_page }">
+        <a class="page-link">{{ p.page }}</a>
+      </li>
+    </ul>
+  </nav>
 </div>

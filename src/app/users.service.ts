@@ -7,11 +7,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsersService {
-  constructor(private http_client:HttpClient) {}
+  constructor(private http_client: HttpClient) { }
 
-  getUsers():Observable<any>{
-    return this.http_client.get(`https://dummyjson.com/users`);
+  getUsersByPagination(limit: number, skip: number , isSort:boolean): Observable<any> {
+    if(isSort){
+      return this.http_client.get(`https://dummyjson.com/users?limit=${limit}&skip=${skip}&sortBy=firstName&order=desc`);
+    }else{
+      return this.http_client.get(`https://dummyjson.com/users?limit=${limit}&skip=${skip}&sortBy=firstName&order=asc`);
+    }
   }
 
-
+  getTotal(): Observable<any> {
+    return this.http_client.get(`https://dummyjson.com/users`)
+  }
 }
