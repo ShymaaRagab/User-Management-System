@@ -1,0 +1,14 @@
+<h2 class="text-center">Your Info</h2>
+<div>
+  <p><img [src]="userData.image" alt="img" width="30%"></p>
+  <p>{{ userData.firstName }}</p>
+  <p>{{ userData.lastName }}</p>
+  <p>{{ userData.age }}</p>
+  <p>{{ userData.gender }}</p>
+  <p>{{ userData.company.department}}</p>
+  <p>{{ userData.company.title }}</p>
+</div>
+
+<button *ngIf="userData.role == 'admin'" (click) ="checkRole()" class="btn btn-primary me-4">Show All User</button>
+<button routerLink="/home" class="btn btn-primary me-4">Home</button>
+<button (click) ="logOut()" class="btn btn-danger my-5">LOGOUT</button>

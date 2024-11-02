@@ -1,0 +1,26 @@
+<h2 class="text-center py-2">Login</h2>
+
+<div class="w-75 mx-auto">
+  <p *ngIf='errorMessage' class="alert alert-danger text-danger py-2">{{errorMessage|json}}</p>
+  <form [formGroup]="loginForm" (ngSubmit)="submitLogin(loginForm)">
+
+    <label for="username">User Name: </label>
+    <input type="text" id="username" formControlName = "username" class="form-control mb-3">
+    <div *ngIf="loginForm.get('username')?.errors && loginForm.get('username')?.touched">
+      <p class="alert text-danger py-1">{{loginForm.get('username')?.errors|json}}</p>
+    </div>
+
+    <label for="pass">Passwprd: </label>
+    <input type="password" id="pass" formControlName = "password" class="form-control mb-2">
+    <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+      <p class="alert text-danger py-1">{{loginForm.get('password')?.errors|json}}</p>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
+      Login
+      <span *ngIf="isLoad">....</span>
+    </button>
+
+  </form>
+
+</div>

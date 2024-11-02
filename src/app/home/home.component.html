@@ -1,0 +1,15 @@
+<div class="container my-5">
+  <button *ngIf="!isLog"  type="button" class='btn btn-primary me-2' (click)="navigateRouter('/login')">
+    Login
+  </button>
+  <button *ngIf="isLog"  type="button" class='btn btn-danger me-2' (click)="logOut()">
+    logOut
+  </button>
+  <button *ngIf="isLog"  type="button" class='btn btn-primary me-2' (click)="navigateRouter('/profile')">
+    Profile
+  </button>
+</div>
+
+<div>
+  <h1>Welcome To My WebSite</h1>
+</div>
