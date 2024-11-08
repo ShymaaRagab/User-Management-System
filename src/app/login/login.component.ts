@@ -14,7 +14,7 @@ export class LoginComponent {
   loginForm: FormGroup = new FormGroup({
     username: new FormControl(null, [Validators.required, Validators.minLength(3)]),
     password: new FormControl(null, [Validators.required, Validators.minLength(3)])
-  })
+  });
   isLoad: boolean = false;
   userToken: string='';
   errorMessage: any;
@@ -25,6 +25,7 @@ export class LoginComponent {
       next: (res) => {
         this.isLoad = false;
         this.userToken = res.accessToken;
+        console.log(res.role);
         localStorage.setItem('userToken',JSON.stringify(this.userToken) );
         this.router.navigate(['/profile']);
       },

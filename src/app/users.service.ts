@@ -9,15 +9,27 @@ import { Observable } from 'rxjs';
 export class UsersService {
   constructor(private http_client: HttpClient) { }
 
-  getUsersByPagination(limit: number, skip: number , isSort:boolean): Observable<any> {
-    if(isSort){
+  getUsersByPagination(limit: number, skip: number, isSort: boolean): Observable<any> {
+    if (isSort) {
       return this.http_client.get(`https://dummyjson.com/users?limit=${limit}&skip=${skip}&sortBy=firstName&order=desc`);
-    }else{
+    } else {
       return this.http_client.get(`https://dummyjson.com/users?limit=${limit}&skip=${skip}&sortBy=firstName&order=asc`);
     }
   }
 
   getTotal(): Observable<any> {
     return this.http_client.get(`https://dummyjson.com/users`)
+  }
+
+  deleteUser(index: number): Observable<any> {
+    return this.http_client.delete(`https://dummyjson.com/users/${index}`);
+  }
+
+  updateUser(index: number, updateData: object): Observable<any> {
+    return this.http_client.put(`https://dummyjson.com/users/${index}`, updateData);
+  }
+
+  addNewUser(userData: object): Observable<any> {
+    return this.http_client.post(`https://dummyjson.com/users/add`, userData);
   }
 }

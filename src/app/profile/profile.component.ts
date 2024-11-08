@@ -1,21 +1,9 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { getActiveConsumer } from '@angular/core/primitives/signals';
+import { Users } from '../users';
 
-export interface UserData {
-  id: number;
-  firstName: string;
-  lastName: string;
-  age: number;
-  gender: string;
-  image: string;
-  company: {
-    department: string;
-    title: string;
-  };
-  role: string;
-}
+
 
 @Component({
   selector: 'app-profile',
@@ -23,10 +11,11 @@ export interface UserData {
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
+  userRole: any;
   constructor(private auth: AuthService , private router: Router){}
   userToken = localStorage.getItem('userToken') || '';
 
-  userData: UserData = {
+  userData: Users = {
     id: 0,
     firstName: '',
     lastName: '',
@@ -43,7 +32,6 @@ export class ProfileComponent implements OnInit {
     this.getuser();
   }
 
-
   checkRole(){
     if(this.userData.role == 'admin'){
       this.router.navigate(['/users']);
@@ -59,7 +47,8 @@ export class ProfileComponent implements OnInit {
         this.auth.LoginAuth(this.userToken).subscribe({
           next: (res) => {
             this.userData = res;
-            console.log(res);
+            this.userRole = res.role;
+            localStorage.setItem('userRole',JSON.stringify(this.userRole));
           },
           error: (err) => {
             console.error('Error fetching user data:', err);
@@ -68,7 +57,7 @@ export class ProfileComponent implements OnInit {
       } else {
         console.error('No access token found.');
       }
-      
+
   }
 
 }

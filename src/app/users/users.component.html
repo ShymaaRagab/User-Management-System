@@ -1,11 +1,12 @@
+<app-add-user (userAddedData)="onUserAdded($event)"></app-add-user>
 <h2 class="my-5 text-center">All Users</h2>
-
 <button type="button" class="btn btn-primary me-3" (click)="sortbyNameAsc()" *ngIf="isSort">Sort BY First Name
   Asc</button>
 <button type="button" class="btn btn-primary" (click)="sortbyNameDesc()" *ngIf="!isSort">Sort By First Name
   Desc</button>
 
-<div class="container">
+<div class="d-flex">
+<div>
   <table class="table">
     <thead class="thead-light">
       <tr>
@@ -18,7 +19,7 @@
         <th scope="col">Job Title</th>
       </tr>
     </thead>
-    <tbody *ngFor="let user of userData">
+    <tbody *ngFor="let user of userData; let i= index">
       <tr>
         <td><img [src]="user.image" alt="img" width="30%"></td>
         <td>{{user.firstName}}</td>
@@ -27,6 +28,12 @@
         <td>{{user.gender}}</td>
         <td>{{user.company.department}}</td>
         <td>{{user.company.title}}</td>
+        <td>
+          <button (click)="clickToEditUser(i)" class="btn btn-outline-secondary">Edit</button>
+        </td>
+        <td>
+          <button (click)="confirmDelete(i)" class="btn btn-outline-secondary">Remove</button>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -38,4 +45,55 @@
       </li>
     </ul>
   </nav>
+</div>
+
+  <div *ngIf="updatedFormShow" class="d-flex justify-content-center form">
+  <form (ngSubmit)="onEditUser()" class="edit_form">
+    <div>
+      <label for="fname">First Name:</label>
+      <input type="text" id="fname" [(ngModel)]="UpdatedData.firstName"
+        name="firstName" required
+        class="form-control mb-3" />
+    </div>
+
+    <div>
+      <label for="lname">Last Name:</label>
+      <input type="text" id="lname" [(ngModel)]="UpdatedData.lastName"
+        name="lastName" required
+        class="form-control mb-3" />
+    </div>
+
+    <div>
+      <label for="age">Age:</label>
+      <input type="number" id="age" [(ngModel)]="UpdatedData.age" name="age" required class="form-control mb-3" />
+    </div>
+
+    <div>
+      <label for="gender">Gender:</label>
+      <select id="gender" [(ngModel)]="UpdatedData.gender" name="gender" class="form-control mb-3">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="dept">Department Name:</label>
+      <input type="text" id="dept" [(ngModel)]="UpdatedData.company.department" name="department" required
+        class="form-control mb-3" />
+    </div>
+
+    <div>
+      <label for="title">Job Title:</label>
+      <input type="text" id="title" [(ngModel)]="UpdatedData.company.title" name="title" required
+        class="form-control mb-3" />
+    </div>
+
+    <div>
+      <label for="role">Role:</label>
+      <input type="text" id="role" [(ngModel)]="UpdatedData.role" name="role" required class="form-control mb-3" />
+    </div>
+
+    <button type="submit" class="btn btn-outline-secondary">Save</button>
+    </form>
+    </div>
 </div>

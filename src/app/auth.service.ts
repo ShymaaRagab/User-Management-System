@@ -25,13 +25,23 @@ export class AuthService {
 
   logOut(){
     const userToken = localStorage.setItem('userToken',"");
-    const userID = localStorage.setItem('userID',"");
+    localStorage.setItem('userRole',"");
     this.router.navigate(['/login']);
   }
 
   isLogin() :boolean{
-    const token = localStorage.getItem('userToken'); 
+    const token = localStorage.getItem('userToken');
     console.log(token)
     return token !== null && token !== '';
   }
+
+  checkRole():boolean{
+    const role= localStorage.getItem('userRole');
+    if(role == '"admin"'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
 }

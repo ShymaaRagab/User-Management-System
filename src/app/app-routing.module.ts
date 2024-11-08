@@ -5,10 +5,11 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { authGuardGuard } from './auth-guard.guard';
+import { roleGuard } from './role.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'users', component: UsersComponent, title: 'Users' ,canActivate: [authGuardGuard]},
+  { path: 'users', component: UsersComponent, title: 'Users' ,canActivate: [roleGuard]},
   { path: 'login', component: LoginComponent, title: 'Login' },
   { path: 'home', component: HomeComponent, title: 'Home' },
   { path: 'profile', component: ProfileComponent, title: 'profile' ,canActivate: [authGuardGuard]}
