@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import { Pagination } from '../pagination';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Users } from '../users';
 
 
@@ -11,7 +10,7 @@ import { Users } from '../users';
   styleUrl: './users.component.css'
 })
 
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit{
   
   userData: any[] = [];
   limit: number = 26; // number of user that will show in table you can change it as you want
@@ -30,7 +29,6 @@ export class UsersComponent implements OnInit {
     this.userservice.getTotal().subscribe({
       next: (res) => {
         this.total = res.total;
-        console.log(this.total);
         this.paginationArray = new Array(Math.ceil(this.total / this.limit))
           .fill(0)
           .map((_, i) => ({
@@ -40,9 +38,9 @@ export class UsersComponent implements OnInit {
           }));
       },
     });
-
     this.getLimitUser(this.current_page);
   }
+
 
   getLimitUser(index: number) {
     this.current_page = index;
@@ -65,6 +63,15 @@ export class UsersComponent implements OnInit {
   sortbyNameDesc() {
     this.isSort = !this.isSort;
     this.getLimitUser(this.current_page);
+  }
+
+  term:string ='';
+  search(){
+    this.userservice.searchForUser(this.term).subscribe({
+      next: (res) => {
+        this.userData = res.users
+      }
+    })
   }
 
   confirmDelete(index: number) {

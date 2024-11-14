@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { AddUserComponent } from './users/add-user/add-user.component';
+import { SearchPipe } from './search.pipe';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { AddUserComponent } from './users/add-user/add-user.component';
     LoginComponent,
     HomeComponent,
     ProfileComponent,
-    AddUserComponent
+    AddUserComponent,
+    SearchPipe,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

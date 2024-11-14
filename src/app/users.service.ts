@@ -32,4 +32,8 @@ export class UsersService {
   addNewUser(userData: object): Observable<any> {
     return this.http_client.post(`https://dummyjson.com/users/add`, userData);
   }
+
+  searchForUser(term: string): Observable<any>{
+    return this.http_client.get(`https://dummyjson.com/users/search?q=${term}`);
+  }
 }
