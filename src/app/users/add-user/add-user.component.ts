@@ -32,7 +32,7 @@ export class AddUserComponent {
   onAdd(addUserForm: FormGroup){
     const userData =addUserForm.value;
     this.userservice.addNewUser(userData).subscribe({
-      next:(res)=> this.userAddedData.emit(res)
+      next:(res)=> {this.userAddedData.emit(res)}
     })
     this.showAddForm = false;
 
